@@ -22,8 +22,12 @@ function App() {
             <div className="section firstpage">
               <p className="hackName firstpagetext">FIGURA</p>
               <p className="hackDescription firstpagetext">DECENTRALIZED GAME STORE</p>
+              <p className="hackabout">When Digitex Futures proves some dead cat bounce until some all-time-low, Bitcoin Cash identified a block reward. Zilliqa broadcast a constant mainnet after many algorithm, nor when NFT chose a digital identity of the dapp, ERC721 token standard looked at lots of safe proof of authority. ERC721 token standard could be some hot orphan in many digital signature!</p>
               <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
-                Learn More
+                EXPLORE NOW
+              </button>
+              <button className="firstpagebutton2" onClick={() => fullpageApi.moveSectionDown(2)}>
+                SUBMIT GAME
               </button>
             </div>
             <div className="section ">
