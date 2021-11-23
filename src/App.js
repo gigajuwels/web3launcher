@@ -19,6 +19,7 @@ function App() {
       render={({ state, fullpageApi }) => {
         return (
           <ReactFullpage.Wrapper>
+
             <div className="section firstpage">
               <p className="hackName firstpagetext">FIGURA</p>
               <p className="hackDescription firstpagetext">DECENTRALIZED GAME STORE</p>
@@ -26,12 +27,22 @@ function App() {
               <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
                 EXPLORE NOW
               </button>
-              <button className="firstpagebutton2" onClick={() => fullpageApi.moveSectionDown(2)}>
+              <button className="firstpagebutton2" onClick={() => fullpageApi.moveTo(3)}>
                 SUBMIT GAME
               </button>
             </div>
+
+            <div className="section launchpage">
+              <div className ="launchtext">
+              <p>This launcher solves the issue of  Digitex Futures proves some dead cat bounce until some all-time-low, Bitcoin Cash identified a block reward. Zilliqa broadcast a constant mainnet after many algorithm, nor when NFT chose a digital identity of the dapp</p>
+              <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
+                EXPLORE NOW
+              </button>
+            </div>
+            </div>
+
             <div className="section ">
-              <p>Section 2</p>
+              <p>Section 3</p>
             </div>
           </ReactFullpage.Wrapper>
         );
