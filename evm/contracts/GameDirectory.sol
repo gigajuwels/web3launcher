@@ -9,6 +9,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URISto
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
+import "./Base64.sol";
 
 contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, AccessControlUpgradeable {
     using CountersUpgradeable for CountersUpgradeable.Counter;
@@ -52,13 +53,40 @@ contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgr
         super._beforeTokenTransfer(from, to, tokenId);
     }
 
+    function uint2str(uint _i) internal pure returns (string memory _uintAsString) {
+        if (_i == 0) {
+            return "0";
+        }
+        uint j = _i;
+        uint len;
+        while (j != 0) {
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint k = len;
+        while (_i != 0) {
+            k = k-1;
+            uint8 temp = (48 + uint8(_i - _i / 10 * 10));
+            bytes1 b1 = bytes1(temp);
+            bstr[k] = b1;
+            _i /= 10;
+        }
+        return string(bstr);
+    }
+
     function tokenURI(uint256 tokenId)
         public
         view
         override
         returns (string memory)
     {
-        return super.tokenURI(tokenId);
+        GameData memory game=games[tokenId];
+
+        string memory packedJson = string(abi.encodePacked('{"name": "', game.title ,'", "description": "',game.description, '", "image_data": "', game.gameCoverURL, '", "image": "',game.gameCoverURL,'", "price": ',uint2str(game.price),', "publisher": "', game.publisher, '"}'));
+
+        string memory json = Base64.encode(packedJson);
+        return string(abi.encodePacked('data:application/json;base64,', json));
     }
 
     function supportsInterface(bytes4 interfaceId)
