@@ -2,12 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import * as React from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
-
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import FormControl from 'react-bootstrap/FormControl'
 import Glider from 'react-glider';
+import FormCheck from 'react-bootstrap/FormCheck'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import './glider-js/glider.min.css';
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Lexend+Deca&family=M+PLUS+1:wght@100&family=Mochiy+Pop+P+One&family=Montserrat:wght@100;700&family=Nunito:wght@600&family=Open+Sans&family=Outfit:wght@500&family=Ubuntu:ital,wght@1,700&display=swap');
-</style>
 
 function App() {
   return (
@@ -38,11 +40,68 @@ function App() {
               <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
                 EXPLORE NOW
               </button>
+
+              
             </div>
             </div>
 
-            <div className="section ">
-              <p>Section 3</p>
+            <div className="section submitpage">
+              <div className="subflex">
+              <p className="hackName firstpagetext">FIGURA</p>
+              <div>
+               {/*  game examples on store */}
+                </div>
+                <div className="subforum">
+                <Form>
+                      <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formGridEmail">
+                          <Form.Label>Email</Form.Label>
+                          <Form.Control type="email" placeholder="Enter email" />
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="formGridPassword">
+                          <Form.Label>Password</Form.Label>
+                          <Form.Control type="password" placeholder="Password" />
+                        </Form.Group>
+                      </Row>
+
+                      <Form.Group className="mb-3" controlId="formGridAddress1">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control placeholder="1234 Main St" />
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="formGridAddress2">
+                        <Form.Label>Address 2</Form.Label>
+                        <Form.Control placeholder="Apartment, studio, or floor" />
+                      </Form.Group>
+
+                      <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formGridCity">
+                          <Form.Label>City</Form.Label>
+                          <Form.Control />
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="formGridState">
+                          <Form.Label>State</Form.Label>
+                          <Form.Select defaultValue="Choose...">
+                            <option>Choose...</option>
+                            <option>...</option>
+                          </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="formGridZip">
+                          <Form.Label>Zip</Form.Label>
+                          <Form.Control />
+                        </Form.Group>
+                      </Row>
+
+                      <Form.Group className="mb-3" id="formGridCheckbox">
+                        <Form.Check type="checkbox" label="Check me out" />
+                      </Form.Group>
+
+                    </Form>
+              </div>
+              </div>
             </div>
           </ReactFullpage.Wrapper>
         );

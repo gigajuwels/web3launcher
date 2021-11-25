@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Lexend+Deca&family=M+PLUS+1:wght@100&family=Mochiy+Pop+P+One&family=Montserrat:wght@100;700&family=Nunito:wght@600&family=Open+Sans&family=Outfit:wght@500&family=Ubuntu:ital,wght@1,700&display=swap');
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -43,11 +44,11 @@ background-position: 0% 50%
 }
 
 .firstpage {
-  background: linear-gradient(209deg, #7c6cab, #67749b,#502e56, #19043a);
+  background: linear-gradient(134deg, #ffca2f, #49346c,#420640,#3d2e7a, #a3629bfc,#ffab2d);
   background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 10s ease infinite;
+  -webkit-animation: Gradient 45s ease infinite;
+  -moz-animation: Gradient 45s ease infinite;
+  animation: Gradient 45s ease infinite;
 }
 
 .firstpagetext {
@@ -134,4 +135,24 @@ code {
     padding-bottom: 50px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.submitpage {
+  background: linear-gradient(308deg, #ffcb2fa6, #4a346c8f,#42064077,#3d2e7a9f, #a3629b96,#ffab2d94);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 45s ease infinite;
+  -moz-animation: Gradient 45s ease infinite;
+  animation: Gradient 45s ease infinite;
+}
+.subflex {
+  display: flex;
+  flex-direction: row;
+  background: rgb(29, 28, 31);
+  border-radius: 30px;
+  width: 80%;
+  height: 80%;
+  margin: 10%;
+}
+.subforum{
+color:white
 }
