@@ -47,16 +47,16 @@ function App() {
 
             <div className="section submitpage">
               <div className="subflex">
-              <p className="hackName firstpagetext">FIGURA</p>
+              <p className="hackName firstpagetext">Submit Your Game</p>
               <div>
                {/*  game examples on store */}
                 </div>
                 <div className="subforum">
                 <Form>
                       <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridEmail">
-                          <Form.Label>Email</Form.Label>
-                          <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Group as={Col} controlId="formGridPublisher">
+                          <Form.Label>Publisher Name</Form.Label>
+                          <Form.Control type="publisher" placeholder="Publisher Name" />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridPassword">
@@ -81,23 +81,19 @@ function App() {
                           <Form.Control />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridState">
+{/*                         <Form.Group as={Col} controlId="formGridState">
                           <Form.Label>State</Form.Label>
                           <Form.Select defaultValue="Choose...">
                             <option>Choose...</option>
                             <option>...</option>
                           </Form.Select>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         <Form.Group as={Col} controlId="formGridZip">
                           <Form.Label>Zip</Form.Label>
                           <Form.Control />
                         </Form.Group>
                       </Row>
-
-                      <Form.Group className="mb-3" id="formGridCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                      </Form.Group>
 
                     </Form>
               </div>
