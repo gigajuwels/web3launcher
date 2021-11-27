@@ -158,30 +158,34 @@ function App() {
                 <Form>
                       <Row className="mb-3">
                         <Form.Group as={Col} controlId="formGridPublisher">
-                          <Form.Label size="lg">Publisher Name    </Form.Label>
-                          <Form.Control size="lg" type="publisher" placeholder="Publisher Name" />
+                          <Form.Label>Publisher Name    </Form.Label>
+                          <br />
+                          <Form.Control size="lg" type="text" type="publisher" placeholder="Publisher Name" style={{ width: '150%', height: '22px' }} />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridTitle">
-                          <Form.Label size="lg">Game Title    </Form.Label>
-                          <Form.Control size="lg" type="game title" placeholder="Game Title" />
+                          <Form.Label>Game Title    </Form.Label>
+                          <br />
+                          <Form.Control size="lg" type="text" type="game title" placeholder="Game Title" style={{ width: '150%', height: '22px' }} />
                         </Form.Group>
                       </Row>
 
                       <Form.Group className="mb-3 col" controlId="formGridDescription">
-                        <Form.Label size="lg">Game Description    </Form.Label>
-                        <Form.Control size="lg" placeholder="Game Description" />
+                        <Form.Label>Game Description    </Form.Label>
+                        <br />
+                        <Form.Control as="textarea" rows={3}  size="lg" type="text" placeholder="Game Description" style={{ height: '100px', width: '150%' }}/>
                       </Form.Group>
-
                       <Form.Group className="mb-3 col" controlId="Game Price">
-                        <Form.Label size="lg">Game Price (in USD)    </Form.Label>
-                        <Form.Control size="lg" placeholder="$0.00" />
+                        <Form.Label>Game Price (in USD)    </Form.Label>
+                        <br />
+                        <Form.Control size="lg" type="text" placeholder="$0.00" style={{ width: '150%' }} />
                       </Form.Group>
 
                       <Row className="mb-3">
                         <Form.Group as={Col} controlId="Publisher Address">
-                          <Form.Label size="lg">Publisher Address/Webhook    </Form.Label>
-                          <Form.Control size="lg" placeholder="To send game payment"/>
+                          <Form.Label>Publisher Address/Webhook    </Form.Label>
+                          <br />
+                          <Form.Control size="lg" type="text" placeholder="To send game payment" style={{ width: '150%', height: '22px' }}/>
                         </Form.Group>
                       </Row>
                       <button className="submitpagebutton" onClick={() => fullpageApi.moveSectionDown()}>

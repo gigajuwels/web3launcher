@@ -56,11 +56,11 @@ background-position: 0% 50%
  margin-top: -10%;
 }
 .hackName {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 800;
-    font-size: 107px;
-    color: white;
-    margin-bottom: -3%;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 800;
+  font-size: 107px;
+  color: white;
+  margin-bottom: -1%;
 }
 .hackDescription {
   font-family: 'Montserrat', sans-serif;
@@ -173,8 +173,9 @@ code {
 .col {
   margin: 12px;
 }
-.subforum{
-color:white
+.subforum {
+  color: white;
+  font-size: larger;
 }
 
 .thumbnails img {
@@ -191,7 +192,7 @@ color:white
 }
 
 .submitpagebutton {
-  margin-left: 33%;
+  margin-left: 55%;
   background: #00ad45;
   border: #3a020200;
   font-size: large;
@@ -205,5 +206,5 @@ color:white
   padding-right: 13px;
   color: white;
   text-shadow: -1px -4px 20px #011a0e;
-  /* LEFT: 50%; */
 }
+
