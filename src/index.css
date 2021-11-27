@@ -152,6 +152,12 @@ code {
   width: 80%;
   height: 80%;
   margin: 10%;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+.subflexinner {
+  margin: 10px;
 }
 .subforum{
 color:white

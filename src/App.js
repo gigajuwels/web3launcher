@@ -10,6 +10,7 @@ import Glider from 'react-glider';
 import FormCheck from 'react-bootstrap/FormCheck'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import './glider-js/glider.min.css';
+import ReactDOM from "react-dom";
 
 function App() {
   return (
@@ -46,12 +47,12 @@ function App() {
             </div>
 
             <div className="section submitpage">
+            <p className="hackName firstpagetext">Submit Your Game</p>
               <div className="subflex">
-              <p className="hackName firstpagetext">Submit Your Game</p>
-              <div>
-               {/*  game examples on store */}
+              <div className="subflexinner">
+              <img src="https://warriders.com/wr_uploads/2018/04/site-icon.jpg"></img>
                 </div>
-                <div className="subforum">
+                <div className="subforum subflexinner">
                 <Form>
                       <Row className="mb-3">
                         <Form.Group as={Col} controlId="formGridPublisher">
@@ -59,42 +60,31 @@ function App() {
                           <Form.Control type="publisher" placeholder="Publisher Name" />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridPassword">
-                          <Form.Label>Password</Form.Label>
-                          <Form.Control type="password" placeholder="Password" />
+                        <Form.Group as={Col} controlId="formGridTitle">
+                          <Form.Label>Game Title</Form.Label>
+                          <Form.Control type="game title" placeholder="Game Title" />
                         </Form.Group>
                       </Row>
 
-                      <Form.Group className="mb-3" controlId="formGridAddress1">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control placeholder="1234 Main St" />
+                      <Form.Group className="mb-3" controlId="formGridDescription">
+                        <Form.Label>Game Description</Form.Label>
+                        <Form.Control placeholder="Game Description" />
                       </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="formGridAddress2">
-                        <Form.Label>Address 2</Form.Label>
-                        <Form.Control placeholder="Apartment, studio, or floor" />
+                      <Form.Group className="mb-3" controlId="Game Price">
+                        <Form.Label>Game Price (in USD)</Form.Label>
+                        <Form.Control placeholder="$0.00" />
                       </Form.Group>
 
                       <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridCity">
-                          <Form.Label>City</Form.Label>
-                          <Form.Control />
-                        </Form.Group>
-
-{/*                         <Form.Group as={Col} controlId="formGridState">
-                          <Form.Label>State</Form.Label>
-                          <Form.Select defaultValue="Choose...">
-                            <option>Choose...</option>
-                            <option>...</option>
-                          </Form.Select>
-                        </Form.Group> */}
-
-                        <Form.Group as={Col} controlId="formGridZip">
-                          <Form.Label>Zip</Form.Label>
-                          <Form.Control />
+                        <Form.Group as={Col} controlId="Publisher Address">
+                          <Form.Label>Publisher Address/Webhook</Form.Label>
+                          <Form.Control placeholder="To send game payment"/>
                         </Form.Group>
                       </Row>
-
+                      <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
+                EXPLORE NOW
+              </button>
                     </Form>
               </div>
               </div>
