@@ -144,27 +144,59 @@ async function submit() {
           <ReactFullpage.Wrapper>
 {/* FIRST PAGE */}
             <div className="section firstpage">
-              <p className="hackName firstpagetext">FIGURA</p>
-              <p className="hackDescription firstpagetext">DECENTRALIZED GAME STORE</p>
-              <p className="hackabout">When Digitex Futures proves some dead cat bounce until some all-time-low, Bitcoin Cash identified a block reward. Zilliqa broadcast a constant mainnet after many algorithm, nor when NFT chose a digital identity of the dapp, ERC721 token standard looked at lots of safe proof of authority. ERC721 token standard could be some hot orphan in many digital signature!</p>
-              <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
-                EXPLORE NOW
-              </button>
-              <button className="firstpagebutton2" onClick={() => fullpageApi.moveTo(3)}>
-                SUBMIT GAME
-              </button>
+                <div className="firstflex">
+                  <div>
+                    <p className="hackName firstpagetext">FIGURA</p>
+                    <p className="hackDescription firstpagetext">DECENTRALIZED GAME STORE</p>
+                    <p className="hackabout">When Digitex Futures proves some dead cat bounce until some all-time-low, Bitcoin Cash identified a block reward. Zilliqa broadcast a constant mainnet after many algorithm, nor when NFT chose a digital identity of the dapp, ERC721 token standard looked at lots of safe proof of authority. ERC721 token standard could be some hot orphan in many digital signature!</p>
+                    <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
+                      EXPLORE NOW
+                    </button>
+                    <button className="firstpagebutton2" onClick={() => fullpageApi.moveTo(3)}>
+                      SUBMIT GAME
+                    </button>
+                    </div>
+                    {/* rocketship goes in this div */}
+                    <div>
+                              <div>
+                              <p className="hackName firstpagetext">FIGURA</p>
+                              <p className="hackDescription firstpagetext">DECENTRALIZED GAME STORE</p>
+                              <p className="hackabout">When Digitex Futures proves some dead cat bounce until some all-time-low, Bitcoin Cash identified a block reward. Zilliqa broadcast a constant mainnet after many algorithm, nor when NFT chose a digital identity of the dapp, ERC721 token standard looked at lots of safe proof of authority. ERC721 token standard could be some hot orphan in many digital signature!</p>
+                              <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
+                                EXPLORE NOW
+                              </button>
+                              <button className="firstpagebutton2" onClick={() => fullpageApi.moveTo(3)}>
+                                SUBMIT GAME
+                              </button>
+                              </div>
+                    </div>
+                </div>
             </div>
 
 
 {/* LAUNCH PAGE */}
             <div className="section launchpage">
-              <div className="aboutLauncher">
-                  <div className ="launchtext">
-                  <p>Figura is a digital game marketplace that allows players to have their DRM be transferable and on chain.</p>
-                  <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
-                    EXPLORE NOW
-                  </button>
+              <div className="submitflex">
+                {/* the rocketship goes in here now */}
+                <div>
+                        <div className="aboutLauncher">
+                        <p className="launchtitle">What's Figura?</p>
+                              <div className ="launchtext">
+                              <p>Figura is a digital game marketplace that allows players to have their DRM be transferable and on chain. It utilizes Chainlink's powerful decentralized oracle network to authenticate players when they purchase a game.</p>
+                              <button className="launchpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
+                                LAUNCH FIGURA
+                              </button>
+                            </div>
+                          </div>
                 </div>
+                  <div className="aboutLauncher">
+                      <div className ="launchtext">
+                      <p>Figura is a digital game marketplace that allows players to have their DRM be transferable and on chain.</p>
+                      <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
+                        LAUNCH FIGURA
+                      </button>
+                    </div>
+                  </div>
               </div>
             </div>
 
@@ -213,55 +245,56 @@ async function submit() {
               
                 </div>
                 <div className="subforum subflexform">
-                <Form onSubmit={(e) => e.preventDefault()}>
-                      <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridPublisher">
-                          <Form.Label>Publisher Name    </Form.Label>
-                          <br />
-                          <Form.Control size="lg" type="text" type="publisher" placeholder="Publisher Name" style={{ width: '150%', height: '22px' }} />
-                        </Form.Group>
+                      <Form onSubmit={(e) => e.preventDefault()}>
+                            <Row className="mb-3">
+                              <Form.Group as={Col} controlId="formGridPublisher">
+                                <Form.Label>Publisher Name    </Form.Label>
+                                <br />
+                                <Form.Control size="lg" type="text" type="publisher" placeholder="Publisher Name" style={{ width: '150%', height: '22px' }} />
+                              </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridTitle">
-                          <Form.Label>Game Title    </Form.Label>
-                          <br />
-                          <Form.Control size="lg" type="text" type="game title" placeholder="Game Title" style={{ width: '150%', height: '22px' }} />
-                        </Form.Group>
-                      </Row>
+                              <Form.Group as={Col} controlId="formGridTitle">
+                                <Form.Label>Game Title    </Form.Label>
+                                <br />
+                                <Form.Control size="lg" type="text" type="game title" placeholder="Game Title" style={{ width: '150%', height: '22px' }} />
+                              </Form.Group>
+                            </Row>
 
-                      <Form.Group className="mb-3 col" controlId="formGridDescription">
-                        <Form.Label>Game Description    </Form.Label>
-                        <br />
-                        <Form.Control as="textarea" rows={3}  size="lg" type="text" placeholder="Game Description" style={{ height: '100px', width: '150%' }}/>
-                      </Form.Group>
+                            <Form.Group className="mb-3 col" controlId="formGridDescription">
+                              <Form.Label>Game Description    </Form.Label>
+                              <br />
+                              <Form.Control as="textarea" rows={3}  size="lg" type="text" placeholder="Game Description" style={{ height: '100px', width: '150%' }}/>
+                            </Form.Group>
 
-                      <Form.Group as={Col} controlId="formGridImage">
-                          <Form.Label>Game Logo URL    </Form.Label>
-                          <br />
-                          <Form.Control size="lg" type="text" type="game image" placeholder="URL of Game Cover Art" style={{ width: '150%', height: '22px' }} />
-                        </Form.Group>
+                            <Form.Group as={Col} controlId="formGridImage">
+                                <Form.Label>Game Logo URL    </Form.Label>
+                                <br />
+                                <Form.Control size="lg" type="text" type="game image" placeholder="URL of Game Cover Art" style={{ width: '150%', height: '22px' }} />
+                              </Form.Group>
 
-                      <Form.Group className="mb-3 col" controlId="Game Price">
-                        <Form.Label>Game Price (in USD)    </Form.Label>
-                        <br />
-                        <Form.Control size="lg" type="text" placeholder="$0.00" style={{ width: '150%' }} />
-                      </Form.Group>
+                            <Form.Group className="mb-3 col" controlId="Game Price">
+                              <Form.Label>Game Price (in USD)    </Form.Label>
+                              <br />
+                              <Form.Control size="lg" type="text" placeholder="$0.00" style={{ width: '150%' }} />
+                            </Form.Group>
 
-                      <Row className="mb-3">
-                        <Form.Group as={Col} controlId="Publisher Address">
-                          <Form.Label>Publisher Address/Webhook    </Form.Label>
-                          <br />
-                          <Form.Control size="lg" type="text" placeholder="To send game payment" style={{ width: '150%', height: '22px' }}/>
-                        </Form.Group>
-                      </Row>
-                      <button className="submitpagebutton" onClick={() => submit()}>
-                SUMBIT
-              </button>
-                    </Form>
-
+                            <Row className="mb-3">
+                              <Form.Group as={Col} controlId="Publisher Address">
+                                <Form.Label>Publisher Address/Webhook    </Form.Label>
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="To send game payment" style={{ width: '150%', height: '22px' }}/>
+                              </Form.Group>
+                            </Row>
+                            <button className="submitpagebutton" onClick={() => submit()}>
+                      SUMBIT
+                    </button>
+                          </Form>
+                </div>
               </div>
               </div>
-            </div>
+
           </ReactFullpage.Wrapper>
+
         );
       }}
     />
