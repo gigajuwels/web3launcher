@@ -258,7 +258,7 @@ element.style {
 .submitTitle {
   color: white;
   font-family: 'Outfit', sans-serif;
-  font-size: xxx-large;
+  font-size: 64px;
   position: absolute;
   margin-top: -30px;
 }

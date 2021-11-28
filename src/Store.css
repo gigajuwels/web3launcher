@@ -1,3 +1,50 @@
-.background{
-    background: violet;
+
+.header {
+    text-align: center;
+    background: #373440;
+    color: white;
+    font-size: xx-large;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.templatebackground{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -25;
+        background: linear-gradient(200deg, #ffcb2fa6, #4a346c8f,#42064077,#3d2e7a9f, #a3629b96,#ffab2d94);
+        background-size: 400% 400%;
+        -webkit-animation: Gradient 45s ease infinite;
+        -moz-animation: Gradient 45s ease infinite;
+        animation: Gradient 45s ease infinite;
+}
+.templateflex {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-content: center;
+    justify-content: flex-start;
+    margin-left: 6%;
+    padding-top: 3%;
+    
+}
+
+.navbarcolor {
+    background: #373440;
+    box-shadow: rgb(0 0 0 / 16%) -1px 11px 12px 0px;
+}
+.gamesection {
+    width: 100%;
+    height: 78vh;
+    background: #625968;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+input.me-2.form-control {
+    background: #373440;
+    color: white !important;
+    font-weight: 700;
+    border-color: #ffffff38;
 }

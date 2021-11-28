@@ -5,7 +5,7 @@ import ReactFullpage from '@fullpage/react-fullpage';
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import {Navbar,Container,NavDropdown,Nav,Offcanvas,Button} from 'react-bootstrap';
+import {Navbar,Container,NavDropdown,Nav,Offcanvas,Button,Card} from 'react-bootstrap';
 import FormControl from 'react-bootstrap/FormControl'
 import Glider from 'react-glider';
 import FormCheck from 'react-bootstrap/FormCheck'
@@ -28,48 +28,62 @@ function Store() {
 
   return (
     <div>
-    <Navbar bg="light" expand={false}>
-    <Container fluid>
-      <Navbar.Brand href="#">FIGURA MARKETPLACE</Navbar.Brand>
-      <Form className="d-flex">
-            <FormControl
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-      <Navbar.Toggle aria-controls="offcanvasNavbar" />
-      <Navbar.Offcanvas
-        id="offcanvasNavbar"
-        aria-labelledby="offcanvasNavbarLabel"
-        placement="end"
-      >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title id="offcanvasNavbarLabel">Account</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <Nav className="justify-content-end flex-grow-1 pe-3">
-            <Nav.Link href="#action1">Wallet</Nav.Link>
-            <Nav.Link href="#action2">Transaction History</Nav.Link>
-            <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-              <NavDropdown.Item href="#action3">Accoun</NavDropdown.Item>
-              <NavDropdown.Item href="#action4"></NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Logout
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        
-        </Offcanvas.Body>
-      </Navbar.Offcanvas>
-    </Container>
-  </Navbar>
-  <div className="background"></div>
-  </div>
+      <div className="templatebackground"></div>
+      <div className="templateflex">
+      <div className="header">FIGURA MARKETPLACE</div>
+      <div className="templateup">
+              <Navbar bg="#373440" className="navbarcolor" expand={false}>
+              <Container fluid>
+                <Form className="d-flex">
+                      <FormControl
+                        type="search"
+                        placeholder="Search Figura"
+                        className="me-2"
+                        aria-label="Search"
+                      />
+                    </Form>
+{/*                     <Nav.Link href="#link">Library</Nav.Link>
+                  <Nav.Link href="#link">Marketplace</Nav.Link> */}
+                <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                <Navbar.Offcanvas
+                  id="offcanvasNavbar"
+                  aria-labelledby="offcanvasNavbarLabel"
+                  placement="end"
+                  backdrop={false}
+                >
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title id="offcanvasNavbarLabel">Account</Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                      <Nav.Link href="#action1">Wallet</Nav.Link>
+                      <Nav.Link href="#action2">Transaction History</Nav.Link>
+                      {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown"> */}
+          {/*               <NavDropdown.Item href="#action3">Account</NavDropdown.Item>
+                        <NavDropdown.Item href="#action4"></NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action5">
+                          Logout
+                        </NavDropdown.Item>
+                      </NavDropdown> */}
+                    </Nav>
+                  
+                  </Offcanvas.Body>
+                </Navbar.Offcanvas>
+              </Container>
+            </Navbar>
 
+
+
+            <div className="gamesection">
+                <div className="d-flex justify-content-around">
+
+              </div>
+            </div>
+  </div>
+  </div>
+  </div>
+  
   );
 }
 
