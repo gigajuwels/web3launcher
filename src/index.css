@@ -66,18 +66,18 @@ height: 700px;
   font-size: 131px;
   color: white;
   text-align: center;
-  margin-bottom: -1%;
+  margin-top: 10%;
 }
 .hackDescription {
   font-family: 'Montserrat', sans-serif;
   font-size: 25px;
-  margin-top: 1%;
+  margin-top: -3%;
   color: #dfdfdf;
   font-weight: 900;
   -webkit-text-fill-color: #ffffff00;
   -webkit-text-stroke-width: .9px;
   -webkit-text-stroke-color: white;
-  margin-bottom: -12px;
+  margin-bottom: 7px;
   text-align: center;
 }
 .hackabout {
@@ -127,7 +127,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.whitetxt {
+  color: white;
+  text-decoration: none;
+}
 .launchpage {
   background: linear-gradient(2deg, #363036, #363036,#363036, #363036);
   background-size: 400% 400%;
@@ -219,11 +222,12 @@ element.style {
   background: rgb(29, 28, 31);
   border-radius: 30px;
   width: 80%;
-  height: 80%;
-  margin: 10%;
+  height: 84%;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+  margin-left: 9%;
+  padding-top: 32px;
 }
 .subfleximage {
   margin: 10px;
@@ -256,10 +260,11 @@ element.style {
   font-family: 'Outfit', sans-serif;
   font-size: xxx-large;
   position: absolute;
+  margin-top: -30px;
 }
 
 .submitpagebutton {
-  margin-left: 55%;
+  margin-left: 50%;
   background: #00ad45;
   border: #3a020200;
   font-size: large;
@@ -269,9 +274,8 @@ element.style {
   border-width: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 13px;
-  padding-right: 13px;
+  padding-left: 31px;
+  padding-right: 31px;
   color: white;
   text-shadow: -1px -4px 20px #011a0e;
 }
-

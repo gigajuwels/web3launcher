@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './index.css';
 import * as React from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Form from 'react-bootstrap/Form'
@@ -17,6 +18,7 @@ import Web3Modal from "web3modal";
 import swal from 'sweetalert';
 import chart from './images/gamedevblockchain.png';
 import gamerwallet from './images/walletsblockchain.png';
+import { Link } from "react-router-dom";
 
 const GameDirectoryAddress ="0xbD28aadDD78aC3B0b9185967D68aC4EfB332C3D0"
 const GameDirectoryABI =[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"previousAdminRole","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"newAdminRole","type":"bytes32"}],"name":"RoleAdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MINTER_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"games","outputs":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRole","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"revokeRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"internalType":"struct GameDirectory.GameData","name":"gamesub","type":"tuple"}],"name":"submitGame","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"}]
@@ -173,9 +175,9 @@ There are over <a className="aboutnum" href="https://www.statista.com/statistics
                         <div className="aboutLauncher">
                         <p className="launchtitle">What's Figura?</p>
                               <div className ="launchtext">
-                              <p>Figura is a digital game marketplace that allows players to have their DRM be transferable and on chain. It utilizes Chainlink's powerful decentralized oracle network to authenticate players when they purchase a game.</p>
-                              <button className="launchpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
-                                LAUNCH FIGURA
+                              <p>Figura solves the problem of ______ by doing _______ which is made possible by ______</p>
+                              <button className="launchpagebutton">
+                                <Link className="whitetxt" to="/store">LAUNCH FIGURA</Link>
                               </button>
                             </div>
                           </div>
@@ -233,7 +235,6 @@ There are over <a className="aboutnum" href="https://www.statista.com/statistics
                 </div>
                 <div className="subforum subflexform">
                       <Form onSubmit={(e) => e.preventDefault()}>
-                            <Row className="mb-3">
                               <Form.Group as={Col} controlId="formGridPublisher">
                                 <Form.Label>Publisher Name    </Form.Label>
                                 <br />
@@ -245,9 +246,9 @@ There are over <a className="aboutnum" href="https://www.statista.com/statistics
                                 <br />
                                 <Form.Control size="lg" type="text" type="game title" placeholder="Game Title" style={{ width: '150%', height: '22px' }} />
                               </Form.Group>
-                            </Row>
 
-                            <Form.Group className="mb-3 col" controlId="formGridDescription">
+
+                            <Form.Group as={Col} controlId="formGridDescription">
                               <Form.Label>Game Description    </Form.Label>
                               <br />
                               <Form.Control as="textarea" rows={3}  size="lg" type="text" placeholder="Game Description" style={{ height: '100px', width: '150%' }}/>
@@ -259,19 +260,18 @@ There are over <a className="aboutnum" href="https://www.statista.com/statistics
                                 <Form.Control size="lg" type="text" type="game image" placeholder="URL of Game Cover Art" style={{ width: '150%', height: '22px' }} />
                               </Form.Group>
 
-                            <Form.Group className="mb-3 col" controlId="Game Price">
+                            <Form.Group as={Col} controlId="Game Price">
                               <Form.Label>Game Price (in USD)    </Form.Label>
                               <br />
                               <Form.Control size="lg" type="text" placeholder="$0.00" style={{ width: '150%' }} />
                             </Form.Group>
 
-                            <Row className="mb-3">
                               <Form.Group as={Col} controlId="Publisher Address">
                                 <Form.Label>Publisher Address/Webhook    </Form.Label>
                                 <br />
                                 <Form.Control size="lg" type="text" placeholder="To send game payment" style={{ width: '150%', height: '22px' }}/>
                               </Form.Group>
-                            </Row>
+
                             <button className="submitpagebutton" onClick={() => submit()}>
                       SUMBIT
                     </button>
