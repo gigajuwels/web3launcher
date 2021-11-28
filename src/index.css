@@ -53,10 +53,12 @@ background-position: 0% 50%
 .firstflex{
 display: flex;
 }
-
+.firstpageheight{
+height: 700px;
+}
 .firstpagetext {
   padding-left: 20%;
-  margin-top: -10%;
+
 }
 .hackName {
   font-family: 'Ubuntu', sans-serif;
@@ -71,9 +73,9 @@ display: flex;
   font-size: 25px;
   margin-top: 1%;
   color: #dfdfdf;
-  font-weight: 700;
+  font-weight: 900;
   -webkit-text-fill-color: #ffffff00;
-  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-width: .9px;
   -webkit-text-stroke-color: white;
   margin-bottom: -12px;
   text-align: center;
@@ -83,6 +85,9 @@ display: flex;
   margin-right: 50px;
   color: white;
   text-align: center;
+}
+.aboutnum{
+  color: white;
 }
 .firstpagebutton {
   margin-left: 42%;
@@ -104,12 +109,14 @@ display: flex;
   color: white;
   margin-left: 31px;
   background: #ffffff00;
-  border: #3a020200;
   font-size: large;
   border-radius: 30px;
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
-  border-color: #ffffff;
+  border-top-color: #e3e1e196;
+  border-bottom-color: #e3e1e196;
+  border-right-color: #e3e1e196;
+  border-left-color: #e3e1e196;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 13px;
@@ -167,6 +174,23 @@ code {
   color: white;
   text-shadow: -1px -4px 20px #011a0e;
 }
+.launchside{
+  display: flex;
+}
+.launchchart{
+    padding-right: 50px;
+    transform: perspective(1000px) rotateY(335deg);
+    width: 578px;
+
+}
+/* .launchwallet {
+  width: 335px;
+  position: relative;
+  z-index: 1;
+  right: 16px;
+  top: 30px;
+  transform: perspective(181px) rotateY(355deg);
+} */
 element.style {
   color: whitesmoke;
   text-align: center;

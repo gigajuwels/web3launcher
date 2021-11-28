@@ -15,6 +15,8 @@ import ReactDOM from "react-dom";
 import { Carousel } from 'react-carousel-minimal';
 import Web3Modal from "web3modal";
 import swal from 'sweetalert';
+import chart from './images/gamedevblockchain.png';
+import gamerwallet from './images/walletsblockchain.png';
 
 const GameDirectoryAddress ="0xbD28aadDD78aC3B0b9185967D68aC4EfB332C3D0"
 const GameDirectoryABI =[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"previousAdminRole","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"newAdminRole","type":"bytes32"}],"name":"RoleAdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MINTER_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"games","outputs":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRole","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"revokeRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"internalType":"struct GameDirectory.GameData","name":"gamesub","type":"tuple"}],"name":"submitGame","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"}]
@@ -144,11 +146,13 @@ async function submit() {
           <ReactFullpage.Wrapper>
 {/* FIRST PAGE */}
             <div className="section firstpage">
-                <div className="firstflex">
+                <div className="firstflex firstpageheight">
                   <div>
                     <p className="hackName firstpagetext">FIGURA</p>
                     <p className="hackDescription firstpagetext">DECENTRALIZED GAME STORE</p>
-                    <p className="hackabout">When Digitex Futures proves some dead cat bounce until some all-time-low, Bitcoin Cash identified a block reward. Zilliqa broadcast a constant mainnet after many algorithm, nor when NFT chose a digital identity of the dapp, ERC721 token standard looked at lots of safe proof of authority. ERC721 token standard could be some hot orphan in many digital signature!</p>
+                    <p className="hackabout">Figura solves an often overlooked issue that over three billion people face globally. 
+There are over <a className="aboutnum" href="https://www.statista.com/statistics/293304/number-video-gamers/">3.24</a > billion gamers in the world who spend over a hundred billion USD annually on their games and game items. The major issue with centralized game stores is that they do not empower the player and can oftentimes treat indie game developers unfairly. Figura is here to change this.
+</p>
                     <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
                       EXPLORE NOW
                     </button>
@@ -156,20 +160,7 @@ async function submit() {
                       SUBMIT GAME
                     </button>
                     </div>
-                    {/* rocketship goes in this div */}
-                    <div>
-                              <div>
-                              <p className="hackName firstpagetext">FIGURA</p>
-                              <p className="hackDescription firstpagetext">DECENTRALIZED GAME STORE</p>
-                              <p className="hackabout">When Digitex Futures proves some dead cat bounce until some all-time-low, Bitcoin Cash identified a block reward. Zilliqa broadcast a constant mainnet after many algorithm, nor when NFT chose a digital identity of the dapp, ERC721 token standard looked at lots of safe proof of authority. ERC721 token standard could be some hot orphan in many digital signature!</p>
-                              <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
-                                EXPLORE NOW
-                              </button>
-                              <button className="firstpagebutton2" onClick={() => fullpageApi.moveTo(3)}>
-                                SUBMIT GAME
-                              </button>
-                              </div>
-                    </div>
+                    <iframe src='https://my.spline.design/untitled-b12301ff620069cece76462a5e3b3ef0/' frameborder='0' width='100%' height='100%'></iframe>
                 </div>
             </div>
 
@@ -177,7 +168,7 @@ async function submit() {
 {/* LAUNCH PAGE */}
             <div className="section launchpage">
               <div className="submitflex">
-                {/* the rocketship goes in here now */}
+
                 <div>
                         <div className="aboutLauncher">
                         <p className="launchtitle">What's Figura?</p>
@@ -189,14 +180,10 @@ async function submit() {
                             </div>
                           </div>
                 </div>
-                  <div className="aboutLauncher">
-                      <div className ="launchtext">
-                      <p>Figura is a digital game marketplace that allows players to have their DRM be transferable and on chain.</p>
-                      <button className="firstpagebutton" onClick={() => fullpageApi.moveSectionDown()}>
-                        LAUNCH FIGURA
-                      </button>
-                    </div>
-                  </div>
+                <div className="launchside">
+               {/*  <img src={gamerwallet} className="launchwallet"></img> */}
+                  <img src={chart} className="launchchart"></img>
+                </div>
               </div>
             </div>
 
