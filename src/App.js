@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import './index.css';
 import * as React from 'react';
+import { useState } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
@@ -23,6 +24,14 @@ import { Link } from "react-router-dom";
 const GameDirectoryAddress ="0xbD28aadDD78aC3B0b9185967D68aC4EfB332C3D0"
 const GameDirectoryABI =[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"previousAdminRole","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"newAdminRole","type":"bytes32"}],"name":"RoleAdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MINTER_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"games","outputs":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRole","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"revokeRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"internalType":"struct GameDirectory.GameData","name":"gamesub","type":"tuple"}],"name":"submitGame","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 function App() {
+  const [gameTitle, setGameTitle] = useState("");
+  const [gameDescription, setGameDescription] = useState("");
+  const [gamePublisher, setGamePublisher] = useState("");
+  const [gameCoverURL, setGameCoverURL] = useState("");
+  const [webhook, setWebhook] = useState("");
+  const [gameSite, setGameSite] = useState("");
+  const [price, setPrice] = useState("$1.00");
+
 
 async function submit() {
     const web3Modal = new Web3Modal({
@@ -38,6 +47,9 @@ async function submit() {
 
     const gamedirectorycontract = new ethers.Contract(GameDirectoryAddress,GameDirectoryABI,signer);  
 
+    let ethPrice = price.replace("$", "");
+
+
     try {
           swal({
             title: "Loading...",
@@ -46,12 +58,12 @@ async function submit() {
             closeOnClickOutside: false
           });
           let submission = await gamedirectorycontract.submitGame(await signer.getAddress(), { 
-             title: "agame",
-             description:"a crypto game",
-             publisher: "someone cool",
-             gameCoverURL: "https://c.ndtvimg.com/2021-08/jsp485jg_axie-infinity-_625x300_26_August_21.jpg",
-             webhook: "",
-            price: "1000000000000000000"
+             title: gameTitle,
+             description: gameDescription,
+             publisher: gamePublisher,
+             gameCoverURL: gameCoverURL,
+             webhook: webhook,
+            price: ethers.utils.parseUnits(ethPrice)
           });
           let depositr = await submission.wait(1);
           let tx = depositr.transactionHash;
@@ -238,38 +250,38 @@ There are over <a className="aboutnum" href="https://www.statista.com/statistics
                               <Form.Group as={Col} controlId="formGridPublisher">
                                 <Form.Label>Publisher Name    </Form.Label>
                                 <br />
-                                <Form.Control size="lg" type="text" type="publisher" placeholder="Publisher Name" style={{ width: '150%', height: '22px' }} />
+                                <Form.Control value={gamePublisher} onChange={(e) => setGamePublisher(e.target.value)} size="lg" type="text" type="publisher" placeholder="Publisher Name" style={{ width: '150%', height: '22px' }} />
                               </Form.Group>
 
                               <Form.Group as={Col} controlId="formGridTitle">
                                 <Form.Label>Game Title    </Form.Label>
                                 <br />
-                                <Form.Control size="lg" type="text" type="game title" placeholder="Game Title" style={{ width: '150%', height: '22px' }} />
+                                <Form.Control value={gameTitle} onChange={(e) => setGameTitle(e.target.value)} size="lg" type="text" type="game title" placeholder="Game Title" style={{ width: '150%', height: '22px' }} />
                               </Form.Group>
 
 
                             <Form.Group as={Col} controlId="formGridDescription">
                               <Form.Label>Game Description    </Form.Label>
                               <br />
-                              <Form.Control as="textarea" rows={3}  size="lg" type="text" placeholder="Game Description" style={{ height: '100px', width: '150%' }}/>
+                              <Form.Control value={gameDescription} onChange={(e) => setGameDescription(e.target.value)} as="textarea" rows={3}  size="lg" type="text" placeholder="Game Description" style={{ height: '100px', width: '150%' }}/>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridImage">
                                 <Form.Label>Game Logo URL    </Form.Label>
                                 <br />
-                                <Form.Control size="lg" type="text" type="game image" placeholder="URL of Game Cover Art" style={{ width: '150%', height: '22px' }} />
+                                <Form.Control value={gameCoverURL} onChange={(e) => setGameCoverURL(e.target.value)} size="lg" type="text" type="game image" placeholder="URL of Game Cover Art" style={{ width: '150%', height: '22px' }} />
                               </Form.Group>
 
                             <Form.Group as={Col} controlId="Game Price">
                               <Form.Label>Game Price (in USD)    </Form.Label>
                               <br />
-                              <Form.Control size="lg" type="text" placeholder="$0.00" style={{ width: '150%' }} />
+                              <Form.Control value={price} onChange={(e) => setPrice(e.target.value)} size="lg" type="text" placeholder="$0.00" style={{ width: '150%' }} />
                             </Form.Group>
 
                               <Form.Group as={Col} controlId="Publisher Address">
-                                <Form.Label>Publisher Address/Webhook    </Form.Label>
+                                <Form.Label>Game Purchase Webhook    </Form.Label>
                                 <br />
-                                <Form.Control size="lg" type="text" placeholder="To send game payment" style={{ width: '150%', height: '22px' }}/>
+                                <Form.Control value={webhook} onChange={(e) => setWebhook(e.target.value)} size="lg" type="text" placeholder="To send game payment" style={{ width: '150%', height: '22px' }}/>
                               </Form.Group>
 
                             <button className="submitpagebutton" onClick={() => submit()}>
