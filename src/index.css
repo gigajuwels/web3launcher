@@ -159,8 +159,9 @@ code {
     /* padding-right: 20px; */
     color: white;
     text-align: center;
-
+    padding-left: 49px;
 }
+
 .launchpagebutton {
   /* margin-left: 42%; */
   background: #00ad45;
@@ -232,6 +233,7 @@ element.style {
 .subfleximage {
   margin: 10px;
   display: flex;
+  margin-top: 57px;
 }
 .subflexform {
   margin: 30px;

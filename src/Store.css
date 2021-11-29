@@ -13,7 +13,7 @@
         height: 100%;
         width: 100%;
         z-index: -25;
-        background: linear-gradient(200deg, #ffcb2fa6, #4a346c8f,#42064077,#3d2e7a9f, #a3629b96,#ffab2d94);
+        background: linear-gradient(202deg, #ffcb2f, #ed8b52,#7e39d777,#7a44d19f, #569de77a,#27ff00c7);
         background-size: 400% 400%;
         -webkit-animation: Gradient 45s ease infinite;
         -moz-animation: Gradient 45s ease infinite;
@@ -48,3 +48,127 @@ input.me-2.form-control {
     font-weight: 700;
     border-color: #ffffff38;
 }
+canvas.identicon {
+    border-radius: 30px;
+    -webkit-box-shadow: -1px 1px 14px 8px rgba(0,0,0,0.57);
+    box-shadow: -1px 1px 10px 3px rgb(0 0 0 / 57%);
+}
+.focusedgame {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.focusgametext{
+        display: flex;
+        width: 100%;
+        align-content: center;
+        flex-direction: column;
+}
+.gamestoredemobutts{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+}
+button.gamewebpagebut {
+    margin: 33px;
+}
+.fordemo{
+        height: 19vh;
+}
+
+.carspacer {
+    margin-top: 5px;
+}
+.gametextbg {
+    background: #a897a9;
+    border-radius: 35px;
+    width: 99%;
+    margin-top: 16px;
+    text-align: center;
+}
+.gamename{
+        font-family: 'Ubuntu', sans-serif;
+        color: #2d0248;
+        font-size: xxx-large;
+}
+.gamewebpagebut {
+    background: #924dd1;
+    border: #3a020200;
+    font-size: large;
+    border-radius: 51px;
+    border-style: solid;
+    border-color: #e389f9;
+    border-width: 1px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    padding-left: 26px;
+    padding-right: 26px;
+    color: white;
+    box-shadow: rgb(0 0 0 / 25%) 1px -1px 55px, rgb(0 0 0 / 12%) 1px -2px 30px, rgb(0 0 0 / 12%) -2px -5px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+    text-shadow: 1px -8px 20px #ff00d4;
+}
+.openseabut {
+    background: #74d4f1;
+    border: #3a020200;
+    font-size: large;
+    border-radius: 51px;
+    border-style: solid;
+    border-color: #2f316a;
+    border-width: 1px;
+    box-shadow: rgb(0 0 0 / 25%) 1px -1px 55px, rgb(0 0 0 / 12%) 1px -2px 30px, rgb(0 0 0 / 12%) -2px -5px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 13px;
+    padding-right: 13px;
+    color: black;
+    text-shadow: -1px 1px 7px #ffffff;
+}
+.gamecover {
+    padding-left: 21px;
+    padding-right: 15px;
+    padding-top: 16px;
+}
+img.img-fluid {
+    border-radius: 10px;
+}
+
+.cards {
+    height: 240px;
+    border-radius: 30px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 4%;
+    margin-right: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+    color: white !important;
+}
+.card1 {
+    background-image:url("https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2FEBNEt8ZDkqPFfK65oD0aZyPRqBk1-hq323a9s.jpeg&w=1920&q=75");
+}
+.card2 {
+    background-image:url("https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2FEBNEt8ZDkqPFfK65oD0aZyPRqBk1-ra1a3azk.jpeg&w=1920&q=75");
+}
+.card3 {
+    background-image:url("https://i1.wp.com/www.nftsstreet.com/wp-content/uploads/2021/08/Articlepic.jpg?w=1000&ssl=1");
+}
+.demofix{
+    background: rgba(210, 105, 30, 0);
+}
+
+.react-multi-carousel-list {
+    margin-top: 3%;
+}
+/* .carousel {
+    position: fixed !important;
+    width: 90%;
+    bottom: 69px;
+}
+.carousel-item {
+    width: 100%;
+    height: 20VH !important;
+} */

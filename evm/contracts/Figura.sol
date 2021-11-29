@@ -6,7 +6,7 @@ import '@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721Enumer
 import '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
-import './GameDirectory.sol';
+import './IGameDirectory.sol';
 import './AggregatorV3Interface.sol';
 
 contract Figura is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, AccessControlUpgradeable {
@@ -14,7 +14,7 @@ contract Figura is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable
 
     bytes32 public constant MINTER_ROLE = keccak256('MINTER_ROLE');
     CountersUpgradeable.Counter private _tokenIdCounter;
-    GameDirectory public gameDirectory;
+    IGameDirectory public gameDirectory;
     AggregatorV3Interface public ethToUsdFeed;
 
     mapping(uint256 => uint256) public gameBalance;
@@ -31,7 +31,7 @@ contract Figura is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
 
-        gameDirectory = GameDirectory(_directoryAddress);
+        gameDirectory = IGameDirectory(_directoryAddress);
         ethToUsdFeed = AggregatorV3Interface(_chainlinkFeed);
     }
 
@@ -83,10 +83,9 @@ contract Figura is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable
             revert('Feed is using unsupported decimals');
         }
 
-        uint256 usdPrice;
-        (,,,,,,usdPrice) = gameDirectory.games(gameId);
+        IGameDirectory.GameData memory data = gameDirectory.gameData(gameId);
 
-        uint256 weiRequired = usdPrice / (currentPrice / 1e18);
+        uint256 weiRequired = data.price / (currentPrice / 1e18);
 
         return weiRequired;
     }

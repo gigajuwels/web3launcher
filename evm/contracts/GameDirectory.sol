@@ -9,23 +9,13 @@ import '@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URISto
 import '@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
+import "./IGameDirectory.sol";
 import './Base64.sol';
 
-contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, AccessControlUpgradeable {
+contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, AccessControlUpgradeable, IGameDirectory {
     using CountersUpgradeable for CountersUpgradeable.Counter;
-    struct GameData {  
-        string title;
-        string description;
-        string publisher;
-        string gameCoverURL;
-        string website;
-        string webhook;
-        uint256 price;
-        address[] gameTokens;
-    }
-    bytes32 public constant MINTER_ROLE = keccak256('MINTER_ROLE');
     CountersUpgradeable.Counter private _tokenIdCounter;
-    mapping (uint256 => GameData) public games;
+    mapping (uint256 => GameData) public _games;
 
     event GameCreated(uint256 indexed gameId, address indexed owner);
     event GameUpdated(uint256 indexed gameId);
@@ -34,38 +24,22 @@ contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgr
     constructor() initializer {}
 
     function initialize() initializer public {
-        __ERC721_init('Game Directory', 'GDN');
+        __ERC721_init('Figura Game Directory', 'GDN');
         __ERC721Enumerable_init();
         __AccessControl_init();
 
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _setupRole(MINTER_ROLE, msg.sender);
     }
 
-    function getGameTokens(uint256 gameId) external view returns (address[] memory) {
-        require(_exists(gameId), 'Game does not exist');
-
-        return games[gameId].gameTokens;
+    function gameData(uint256 gameId) external view override returns (GameData memory) {
+        return _games[gameId];
     }
 
-    function getGameToken(uint256 gameId, uint256 index) external view returns (address) {
-        require(_exists(gameId), 'Game does not exist');
-        require(index < games[gameId].gameTokens.length, 'Index out of bounds');
-
-        return games[gameId].gameTokens[index];
-    }
-
-    function getGameTokenCount(uint256 gameId) external view returns (uint256) {
-        require(_exists(gameId), 'Game does not exist');
-
-        return games[gameId].gameTokens.length;
-    }
-
-    function submitGame(address to, GameData memory gamesub) public{
+    function submitGame(address to, GameData memory gamesub) public {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        games[tokenId]=gamesub;
+        _games[tokenId]=gamesub;
 
         emit GameCreated(tokenId, to);
     }
@@ -105,7 +79,7 @@ contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgr
         require(_exists(tokenId), 'Game does not exist');
         require(msg.sender == ownerOf(tokenId), 'Caller must be the current game admin');
 
-        games[tokenId] = newData;
+        _games[tokenId] = newData;
 
         emit GameUpdated(tokenId);
     }
@@ -113,10 +87,10 @@ contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgr
     function tokenURI(uint256 tokenId)
         public
         view
-        override
+        override(ERC721Upgradeable, IGameDirectory)
         returns (string memory)
     {
-        GameData memory game=games[tokenId];
+        GameData memory game=_games[tokenId];
 
         string memory packedJson = string(abi.encodePacked('{"name": "', game.title ,'", "description": "',game.description, '", "image_data": "', game.gameCoverURL, '", "image": "',game.gameCoverURL,'", "price": ',uint2str(game.price),', "publisher": "', game.publisher, '"}'));
 
@@ -133,7 +107,7 @@ contract GameDirectory is Initializable, ERC721Upgradeable, ERC721EnumerableUpgr
         return super.supportsInterface(interfaceId);
     }
 
-    function exists(uint256 tokenId) public view returns (bool) {
+    function exists(uint256 tokenId) public view override returns (bool) {
         return _exists(tokenId);
     }
 }

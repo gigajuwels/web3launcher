@@ -19,10 +19,11 @@ import Web3Modal from "web3modal";
 import swal from 'sweetalert';
 import chart from './images/gamedevblockchain.png';
 import gamerwallet from './images/walletsblockchain.png';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import useWeb3 from './hooks/useWeb3';
 
-const GameDirectoryAddress ="0xbD28aadDD78aC3B0b9185967D68aC4EfB332C3D0"
-const GameDirectoryABI =[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"previousAdminRole","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"newAdminRole","type":"bytes32"}],"name":"RoleAdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MINTER_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"games","outputs":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRole","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"revokeRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"internalType":"struct GameDirectory.GameData","name":"gamesub","type":"tuple"}],"name":"submitGame","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+const GameDirectoryAddress ="0x899FA942F90AB4E2767060AEE41e61823359Bb46"
+const GameDirectoryABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"gameId","type":"uint256"},{"indexed":true,"internalType":"address","name":"owner","type":"address"}],"name":"GameCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"gameId","type":"uint256"}],"name":"GameUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"previousAdminRole","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"newAdminRole","type":"bytes32"}],"name":"RoleAdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"_games","outputs":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"slug","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"website","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"exists","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"gameId","type":"uint256"}],"name":"gameData","outputs":[{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"slug","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"website","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"internalType":"struct IGameDirectory.GameData","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRole","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"revokeRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"slug","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"website","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"internalType":"struct IGameDirectory.GameData","name":"gamesub","type":"tuple"}],"name":"submitGame","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"},{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"slug","type":"string"},{"internalType":"string","name":"description","type":"string"},{"internalType":"string","name":"publisher","type":"string"},{"internalType":"string","name":"gameCoverURL","type":"string"},{"internalType":"string","name":"website","type":"string"},{"internalType":"string","name":"webhook","type":"string"},{"internalType":"uint256","name":"price","type":"uint256"}],"internalType":"struct IGameDirectory.GameData","name":"newData","type":"tuple"}],"name":"updateGame","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 function App() {
   const [gameTitle, setGameTitle] = useState("");
   const [gameDescription, setGameDescription] = useState("");
@@ -31,21 +32,26 @@ function App() {
   const [webhook, setWebhook] = useState("");
   const [gameSite, setGameSite] = useState("");
   const [price, setPrice] = useState("$1.00");
+  const {connect, connected, signer} = useWeb3();
+  const [gotoStore, setGotoStore] = useState(false);
+  const [slug, setSlug] = useState("");
 
+  async function verifyWeb3Store() {
+    if (connected) {
+      setGotoStore(true);
+    } else {
+      await connect();
+      setGotoStore(true);
+    }
+  }
 
-async function submit() {
-    const web3Modal = new Web3Modal({
-      network: 'fuji',
-      cacheProvider: true,
-      theme: "dark"
-    });
-  
-    const provider = await web3Modal.connect();
-  
-    const ethersProvider = new ethers.providers.Web3Provider(provider);
-    const signer = ethersProvider.getSigner();
+  async function submit() {
+    let signerToUse = signer;
+    if (!connected) {
+      signerToUse = await connect();
+    }
 
-    const gamedirectorycontract = new ethers.Contract(GameDirectoryAddress,GameDirectoryABI,signer);  
+    const gamedirectorycontract = new ethers.Contract(GameDirectoryAddress,GameDirectoryABI,signerToUse);  
 
     let ethPrice = price.replace("$", "");
 
@@ -57,13 +63,15 @@ async function submit() {
             button: false,
             closeOnClickOutside: false
           });
-          let submission = await gamedirectorycontract.submitGame(await signer.getAddress(), { 
+          let submission = await gamedirectorycontract.submitGame(await signerToUse.getAddress(), { 
              title: gameTitle,
              description: gameDescription,
              publisher: gamePublisher,
              gameCoverURL: gameCoverURL,
              webhook: webhook,
-            price: ethers.utils.parseUnits(ethPrice)
+             website: '',
+             slug: slug,
+             price: ethers.utils.parseUnits(ethPrice)
           });
           let depositr = await submission.wait(1);
           let tx = depositr.transactionHash;
@@ -145,8 +153,11 @@ async function submit() {
 
 /*   end image import */
 
-
-
+  if (gotoStore) {
+    return (
+      <Redirect to="/store" />
+    )
+  }
 
 
   return (
@@ -187,9 +198,9 @@ There are over <a className="aboutnum" href="https://www.statista.com/statistics
                         <div className="aboutLauncher">
                         <p className="launchtitle">What's Figura?</p>
                               <div className ="launchtext">
-                              <p>Figura solves the problem of ______ by doing _______ which is made possible by ______</p>
-                              <button className="launchpagebutton">
-                                <Link className="whitetxt" to="/store">LAUNCH FIGURA</Link>
+                              <p>Figura allows players to truly own their games and game items by having access to the blockchain these games live on. As a decentralized gaming marketplace, publishers regardless of size have equal opportunity to participate and track customer interaction. The Figura DAO will be open to both players and publishers, which will prevent spam and promote quality game curation. Figura encourages equity and equality in the gaming industry, just like the technologies it was built from.</p>
+                              <button className="launchpagebutton" onClick={verifyWeb3Store}>
+                                LAUNCH FIGURA
                               </button>
                             </div>
                           </div>
@@ -278,10 +289,16 @@ There are over <a className="aboutnum" href="https://www.statista.com/statistics
                               <Form.Control value={price} onChange={(e) => setPrice(e.target.value)} size="lg" type="text" placeholder="$0.00" style={{ width: '150%' }} />
                             </Form.Group>
 
-                              <Form.Group as={Col} controlId="Publisher Address">
-                                <Form.Label>Game Purchase Webhook    </Form.Label>
+                              <Form.Group as={Col} controlId="Opensea">
+                                <Form.Label>SEO Slug    </Form.Label>
                                 <br />
-                                <Form.Control value={webhook} onChange={(e) => setWebhook(e.target.value)} size="lg" type="text" placeholder="To send game payment" style={{ width: '150%', height: '22px' }}/>
+                                <Form.Control value={slug} onChange={(e) => setSlug(e.target.value)} size="lg" type="text" placeholder="For Opensea" style={{ width: '150%', height: '22px' }}/>
+                              </Form.Group>
+
+                              <Form.Group as={Col} controlId="Publisher Address">
+                                <Form.Label>Notification Webhook    </Form.Label>
+                                <br />
+                                <Form.Control value={webhook} onChange={(e) => setWebhook(e.target.value)} size="lg" type="text" placeholder="To receive purchase notifications" style={{ width: '150%', height: '22px' }}/>
                               </Form.Group>
 
                             <button className="submitpagebutton" onClick={() => submit()}>
